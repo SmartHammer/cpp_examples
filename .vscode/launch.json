@@ -1,0 +1,65 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: c++-decorator",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/c++-decorator",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build: c++-decorator"
+        },
+        {
+            "name": "Debug: c++-strong-type-test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/c++-strong-type-test",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build: c++-strong-type-test"
+        },
+        {
+            "name": "Debug: c++-physical-unit-test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/c++-physical-unit-test",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build: c++-physical-unit-test"
+        }
+    ]
+}

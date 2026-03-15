@@ -1,0 +1,22 @@
+{
+	"name": "C++ Development (Alpine)",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cmake-tools",
+				"llvm-vs-code-extensions.vscode-clangd",
+				"xaver.clang-format"
+			],
+			"settings": {
+				"C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+				"cmake.configureOnOpen": false
+			}
+		}
+	},
+	"postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+	"remoteUser": "vscode"
+}

@@ -39,3 +39,10 @@
 
 # debug information files
 *.dwo
+
+# Build output
+build/
+
+# Cache folder: keep the directory but ignore its contents
+.cache/*
+!.cache/.gitkeep

@@ -1,0 +1,116 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Configure",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: Build All",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--parallel"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "dependsOn": "CMake: Configure"
+        },
+        {
+            "label": "Build: c++-decorator",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--target",
+                "c++-decorator",
+                "--parallel"
+            ],
+            "group": "build",
+            "problemMatcher": "$gcc",
+            "dependsOn": "CMake: Configure"
+        },
+        {
+            "label": "Build: c++-strong-type-test",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--target",
+                "c++-strong-type-test",
+                "--parallel"
+            ],
+            "group": "build",
+            "problemMatcher": "$gcc",
+            "dependsOn": "CMake: Configure"
+        },
+        {
+            "label": "Build: c++-physical-unit-test",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--target",
+                "c++-physical-unit-test",
+                "--parallel"
+            ],
+            "group": "build",
+            "problemMatcher": "$gcc",
+            "dependsOn": "CMake: Configure"
+        },
+        {
+            "label": "Run: c++-decorator",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/c++-decorator",
+            "group": "test",
+            "problemMatcher": [],
+            "dependsOn": "Build: c++-decorator"
+        },
+        {
+            "label": "Run: c++-strong-type-test",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/c++-strong-type-test",
+            "group": "test",
+            "problemMatcher": [],
+            "dependsOn": "Build: c++-strong-type-test"
+        },
+        {
+            "label": "Run: c++-physical-unit-test",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/c++-physical-unit-test",
+            "group": "test",
+            "problemMatcher": [],
+            "dependsOn": "Build: c++-physical-unit-test"
+        },
+        {
+            "label": "CMake: Clean",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--target",
+                "clean"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
