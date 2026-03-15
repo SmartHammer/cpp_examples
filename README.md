@@ -25,3 +25,6 @@ using DistanceMeter = Difference<double, struct DistanceTag>;
 using Meter = Quantity<DistanceMeter>;
 ```
 [see also](./src/QuantityTest.cpp)
+
+## Decorator
+see [FEATURES.md](./FEATURES.md) for details.
