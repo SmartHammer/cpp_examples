@@ -62,6 +62,21 @@
             "dependsOn": "CMake: Configure"
         },
         {
+            "label": "Build: c++-limited-numeric-strong-type-test",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--target",
+                "c++-limited-numeric-strong-type-test",
+                "--parallel"
+            ],
+            "group": "build",
+            "problemMatcher": "$gcc",
+            "dependsOn": "CMake: Configure"
+        },
+        {
             "label": "Build: c++-physical-unit-test",
             "type": "shell",
             "command": "cmake",
