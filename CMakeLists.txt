@@ -17,6 +17,9 @@ add_subdirectory(libs/strong_type)
 add_executable(c++-strong-type-test src/StrongTypeTest.cpp)
 target_link_libraries(c++-strong-type-test PRIVATE strong_type::strong_type)
 
+add_executable(c++-limited-numeric-strong-type-test src/LimitedNumericTypeTest.cpp)
+target_link_libraries(c++-limited-numeric-strong-type-test PRIVATE strong_type::strong_type)
+
 add_subdirectory(libs/quantity)
 add_executable(c++-physical-unit-test src/QuantityTest.cpp)
 target_link_libraries(c++-physical-unit-test PRIVATE quantity::quantity)
