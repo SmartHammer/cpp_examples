@@ -2,6 +2,8 @@
 
 #include <concepts>
 
+inline namespace v1 {
+
 template <typename T, typename Tag>
 class StrongType {
     T value_;
@@ -41,3 +43,5 @@ public:
         requires(not (std::same_as<U, T> or std::same_as<U, StrongType>))
     bool operator==(const U&) const = delete;
 };
+
+} // namespace v1

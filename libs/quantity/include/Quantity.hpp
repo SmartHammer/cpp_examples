@@ -6,7 +6,7 @@
 #include <numeric>
 
 // ── forward declarations ────────────────────────────────────────
-
+inline namespace v1 {
 template <typename T, typename Tag, typename Ratio = std::ratio<1>>
 class Difference;
 
@@ -348,6 +348,8 @@ public:
     /// Prevent implicit conversion to the underlying type (use .count() instead)
     operator T() const = delete;
 };
+
+} // namespace v1
 
 // ═══════════════════════════════════════════════════════════════
 // User-defined literal macros (like std::chrono_literals)
