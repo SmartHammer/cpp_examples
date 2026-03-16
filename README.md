@@ -14,6 +14,17 @@ using SecondStrongType = StrongType<int8_t, struct SecondStrongTypeTag>;
 ```
 [see also](./src/StrongTypeTest.cpp)
 
+## Limited-Numeric-Strong-Type
+C++ 20 limited-numeric-strong-type template
+
+__NOTE__: is based on Strong-Type. Any limited-numeric-strong-type has besides a base-type, a name and a tag an optional minimal and maximal value.
+
+```cpp
+using LimitedType = LimitedNumericStrongType<int16_t, struct LimitedTypeTag, -10, 280>;
+```
+
+[see also](./src/LimitedNumericTypeTest.cpp)
+
 ## Quantity
 C++ 20 strong-type pyhsical quantity type templates
 
@@ -25,6 +36,12 @@ using DistanceMeter = Difference<double, struct DistanceTag>;
 using Meter = Quantity<DistanceMeter>;
 ```
 [see also](./src/QuantityTest.cpp)
+
+## clang-tidy-plugin (100% AI-generated)
+### No-Standard-Types-In-Interface-Check
+clang-tidy additional check that allows to check if interfaces contain only strong typed values
+
+[see also](./src/CheckNoStandardTypesInInterface.cpp)
 
 ## Decorator
 see [FEATURES.md](./FEATURES.md) for details.
