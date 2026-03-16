@@ -23,3 +23,6 @@ target_link_libraries(c++-limited-numeric-strong-type-test PRIVATE strong_type::
 add_subdirectory(libs/quantity)
 add_executable(c++-physical-unit-test src/QuantityTest.cpp)
 target_link_libraries(c++-physical-unit-test PRIVATE quantity::quantity)
+
+add_executable(c++-interface-check-test src/CheckNoStandardTypesInInterface.cpp)
+target_link_libraries(c++-interface-check-test PRIVATE strong_type::strong_type quantity::quantity)

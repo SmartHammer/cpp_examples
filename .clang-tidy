@@ -1,0 +1,4 @@
+---
+Checks: >
+  -*,
+  custom-no-standard-types-in-interface

@@ -126,6 +126,65 @@
                 "clean"
             ],
             "problemMatcher": []
+        },
+        {
+            "label": "CMake: Configure (compile_commands)",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build: clang-tidy-plugin",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-shared",
+                "-fPIC",
+                "-fno-rtti",
+                "-I/usr/lib/llvm21/include",
+                "-std=c++17",
+                "-DEXPERIMENTAL_KEY_INSTRUCTIONS",
+                "-D__STDC_CONSTANT_MACROS",
+                "-D__STDC_FORMAT_MACROS",
+                "-D__STDC_LIMIT_MACROS",
+                "-o",
+                "${workspaceFolder}/clang-tidy-plugin/NoStandardTypesInInterfaceCheck.so",
+                "${workspaceFolder}/clang-tidy-plugin/NoStandardTypesInInterfaceCheck.cpp"
+            ],
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Clang-Tidy: All Projects",
+            "type": "shell",
+            "command": "find",
+            "args": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/libs",
+                "-name",
+                "*.cpp",
+                "-exec",
+                "clang-tidy",
+                "--load=${workspaceFolder}/clang-tidy-plugin/NoStandardTypesInInterfaceCheck.so",
+                "-p",
+                "${workspaceFolder}/build",
+                "{}",
+                "+"
+            ],
+            "group": "test",
+            "problemMatcher": "$gcc",
+            "dependsOn": [
+                "CMake: Configure (compile_commands)",
+                "Build: clang-tidy-plugin"
+            ]
         }
     ]
 }
