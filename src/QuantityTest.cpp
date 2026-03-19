@@ -1,4 +1,5 @@
 #include <cassert>
+#include <chrono>
 #include <ratio>
 
 #include "Quantity.hpp"
@@ -12,12 +13,11 @@ using Millimeters = Difference<double, struct DistTag, std::ratio<1, 1000>>;
 using KmPoint = Quantity<Kilometers>;
 using MPoint  = Quantity<MetersR>;
 using CmPoint = Quantity<Centimeters>;
-
-// ── time types (ratio-scaled) ───────────────────────────────────
-using Hours   = Difference<double, struct TimeTag, std::ratio<3600>>;
-using Minutes = Difference<double, struct TimeTag, std::ratio<60>>;
-using Secs    = Difference<double, struct TimeTag>;
-using Millis  = Difference<double, struct TimeTag, std::ratio<1, 1000>>;
+    
+// ── weight types (ratio-scaled) ─────────────────────────────────
+using Grams   = Difference<double, struct WeightTag, std::ratio<1>>;
+using Kilograms = Difference<double, struct WeightTag, std::ratio<1000>>;
+using Milligrams = Difference<double, struct WeightTag, std::ratio<1, 1000>>;
 
 // ── user-defined literals (like std::chrono_literals) ───────────
 namespace distance_literals {
@@ -31,11 +31,10 @@ namespace distance_literals {
     QUANTITY_UNIT_LITERAL(cm_pt, CmPoint)
 }
 
-namespace time_literals {
-    QUANTITY_DIFFERENCE_LITERAL(h,   Hours)
-    QUANTITY_DIFFERENCE_LITERAL(min, Minutes)
-    QUANTITY_DIFFERENCE_LITERAL(s,   Secs)
-    QUANTITY_DIFFERENCE_LITERAL(ms,  Millis)
+namespace weight_literals {
+    QUANTITY_DIFFERENCE_LITERAL(g,   Grams)
+    QUANTITY_DIFFERENCE_LITERAL(kg,  Kilograms)
+    QUANTITY_DIFFERENCE_LITERAL(mg,  Milligrams)
 }
 
 int main() {
@@ -43,8 +42,8 @@ int main() {
     using Distance = Difference<double, struct MeterTag>;
     using Meters   = Quantity<Distance>;
     // A second, incompatible physical unit
-    using Duration = Difference<double, struct SecondTag>;
-    using Seconds  = Quantity<Duration>;
+    using Weight = Difference<double, struct GramTag>;
+    using Grams  = Quantity<Weight>;
 
     // ── construction ────────────────────────────────────────────
     constexpr Meters   origin{0.0};
@@ -260,7 +259,7 @@ int main() {
     // ═══════════════════════════════════════════════════════════
     {
         using namespace distance_literals;
-        using namespace time_literals;
+        using namespace weight_literals;
 
         // ── Difference literals (floating-point) ────────────────
         constexpr auto track = 1.0_km + 500.0_m;
@@ -276,12 +275,12 @@ int main() {
         constexpr auto marathon = 42_km + 195_m;
         static_assert(marathon.count() == 42195.0, "42km + 195m = 42195m");
 
-        // ── Time literals ───────────────────────────────────────
-        constexpr auto flight = 2.0_h + 30.0_min;
-        static_assert(flight.count() == 150.0, "2h + 30min = 150min");
+        // ── Weight literals ───────────────────────────────────────
+        constexpr auto mass = 2.0_kg + 500.0_g;
+        static_assert(mass.count() == 2500.0, "2kg + 500g = 2500g");
 
-        constexpr auto blink = 1.0_s + 500.0_ms;
-        static_assert(blink.count() == 1500.0, "1s + 500ms = 1500ms");
+        constexpr auto light_weight = 1.0_g + 500.0_mg;
+        static_assert(light_weight.count() == 1500.0, "1g + 500mg = 1500mg");
 
         // ── Quantity literals ───────────────────────────────────────
         constexpr auto start  = 0.0_m_pt;
